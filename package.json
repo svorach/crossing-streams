@@ -11,6 +11,9 @@
   },
   "scripts": {
     "start": "node index.js",
-    "start:watch": "nodemon index.js"
+    "start:heap": "node --max-old-space-size=8192 index.js",
+    "start:heap:gc": "node --max-old-space-size=8192 --expose-gc index.js",
+    "start:watch": "nodemon index.js",
+    "start:gc": "node --expose-gc index.js"
   }
 }
