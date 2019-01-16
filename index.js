@@ -3,26 +3,22 @@ const path = require('path');
 const chalk = require('chalk');
 const map = require('map-stream');
 
-// util
-const rnd = () => Math.floor(Math.random() * 100000).toString(16);
-const cb = (str, color) => {
-  if (!str) return;
-  const decorator = color ? color : chalk.yellow;
-  console.log(decorator(str));
-};
-const transform = str =>
-  `${str
-    .split(' ')
-    .join('-')
-    .replace('.', '')
-    .toLowerCase()}-${rnd()}`.trim();
+const { rnd, transform } = require('./util');
 
 // consts
 const TMP_DIR = path.join(__dirname, 'tmp');
 const FILE_NAME = `${rnd()}.html`;
 const FILE_PATH = path.join(TMP_DIR, FILE_NAME);
+const AMOUNT = parseInt(process.argv[2], 10) || 1000;
 
-const stub = (amount = 1000) => {
+// util
+const cb = (str, color) => {
+  if (!str) return;
+  const decorator = color ? color : chalk.yellow;
+  console.log(decorator(str));
+};
+
+const stub = amount => {
   const arr = [];
 
   for (let i = 0; i < amount; i++) {
@@ -83,7 +79,7 @@ const writeInline = async arr => {
 };
 
 const mapWrite = async cb => {
-  const arr = stub(1000000);
+  const arr = stub(AMOUNT);
   const stream = fs.createWriteStream(FILE_PATH);
 
   await writeStream(stream, arr, cb);
