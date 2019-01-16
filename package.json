@@ -1,0 +1,12 @@
+{
+  "name": "crossing-streams",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:svorach/crossing-streams.git",
+  "author": "svorach <svorach@gmail.com:>",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "map-stream": "^0.0.7"
+  }
+}
