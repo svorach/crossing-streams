@@ -1,4 +1,5 @@
 const chalk = require('chalk');
+const lorem = require('lorem-ipsum');
 
 const rnd = () => Math.floor(Math.random() * 100000).toString(16);
 
@@ -19,14 +20,15 @@ const stub = amount => {
   const arr = [];
 
   for (let i = 0; i < amount; i++) {
-    arr.push('Lorem ipsum dolor sit amet.');
+    arr.push(lorem());
   }
 
   return arr;
 };
 
-const forceGc = () => {
+const forceGc = cb => {
   if (global.gc) {
+    cb('Forcing garbage collection.', chalk.red);
     global.gc();
   } else {
     cb('No GC hook! Start your program as `node --expose-gc file.js`.');

@@ -7,13 +7,18 @@
   "license": "MIT",
   "dependencies": {
     "chalk": "^2.4.2",
+    "lorem-ipsum": "^1.0.6",
     "map-stream": "^0.0.7"
   },
   "scripts": {
     "start": "node index.js",
-    "start:heap": "node --max-old-space-size=8192 index.js",
-    "start:heap:gc": "node --max-old-space-size=8192 --expose-gc index.js",
+    "start:heap": "node --max-old-space-size=8192 --expose-gc --trace-deprecation index.js",
+    "start:heap:gc": "node --max-old-space-size=2048 --expose-gc --trace-deprecation index.js",
+    "start:heap:gc:debug": "node --inspect-brk --max-old-space-size=8192 --expose-gc --trace-deprecation index.js",
     "start:watch": "nodemon index.js",
     "start:gc": "node --expose-gc index.js"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
   }
 }
